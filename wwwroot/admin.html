@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="admin.js"></script>
+    <title>admin</title>
+</head>
+
+<body>
+    <h1>לוח משתמשים</h1>
+    <h3>הוספה</h3>
+    <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
+        <input type="text" id="add-name" placeholder="שם משתמש">
+        <input type="password" id="add-password" placeholder="סיסמה">
+        <input type="checkbox" id="add-isAdmin" placeholder="מנהל?">
+        <input type="submit" value="Add">
+    </form>
+    <p id="counter"></p>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>password</th>
+            <th>IsAdmin</th>
+            <th>Delete</th>
+        </tr>
+        <tbody id="users"></tbody>
+    </table>
+    <br/>
+    <br/>
+    <script type="text/javascript">
+      
+    </script>
+</body>
+</html>

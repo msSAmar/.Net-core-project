@@ -1,15 +1,15 @@
-const uri = '/Admin';
 function addItem() {
-    const NameTextbox = document.getElementById('name');
-    const PasswordTextbox = document.getElementById('password');
+    const addNameTextbox = document.getElementById('add-name');
+    const addPassword=document.getElementById('add-password');
+    const addIsAdmin=document.getElementById('add-isAdmin');
 
     const item = {
-        Name:NameTextbox.value,
-        Password:PasswordTextbox.value
-,       
+        UserName: addNameTextbox.value.trim(),
+        Password:addPassword.value.trim(),
+        IsAdmin:addIsAdmin.value.trim()
     };
 
-    fetch(uri, {
+    fetch(uriUser, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
@@ -19,9 +19,8 @@ function addItem() {
         })
         .then(response => response.json())
         .then(() => {
-           
-            NameTextbox.value = '';
-            PasswordTextbox.value='';
+            addUsers();
+            addNameTextbox.value = '';
         })
         .catch(error => console.error('Unable to add item.', error));
 }

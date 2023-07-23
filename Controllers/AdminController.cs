@@ -27,15 +27,18 @@ namespace updateApi.Controllers
         }
         [HttpPost]
         [Route("[action]")]
+        
         public ActionResult<String> Login([FromBody] Admin admin)
         {
-            var dt = DateTime.Now;
+            
+            
 
-            if (admin.Name != "shira"
-            || admin.Password != $"12345")
-            {
-                return Unauthorized();
-            }
+            // if (admin.Name != "shirale"
+            // || admin.Password != "12345")
+            // {
+            //     return Unauthorized();
+                
+            // }
 
             var claims = new List<Claim>
             {
@@ -66,11 +69,12 @@ namespace updateApi.Controllers
         [Route("[action]")]
         public IActionResult UserLogin([FromBody] User user)
         {
-           User u=this.UserServices.Exist(user.Password);
+       
+        //    User u=this.UserServices.Exist(user.Password);
             
-           if(u==null){
-                return Unauthorized();
-            }
+        //    if(u==null){
+        //         return Unauthorized();
+        //     }
 
             var claims = new List<Claim>
             {

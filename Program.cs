@@ -20,7 +20,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTAsk", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "MyTask", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
@@ -37,6 +37,7 @@ builder.Services.AddSwaggerGen(c =>
                 }
                 });
             });
+builder.Services.AddSwaggerGen();
 builder.Services.AddAssiment();
 builder.Services.AddAuthentication(options =>
                 {

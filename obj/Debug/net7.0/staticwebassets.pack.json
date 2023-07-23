@@ -1,6 +1,10 @@
 {
   "Files": [
     {
+      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\admin.html",
+      "PackagePath": "staticwebassets\\admin.html"
+    },
+    {
       "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
@@ -9,16 +13,20 @@
       "PackagePath": "staticwebassets\\index.html"
     },
     {
-      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\login.js",
-      "PackagePath": "staticwebassets\\js\\login.js"
+      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\admin.js",
+      "PackagePath": "staticwebassets\\js\\admin.js"
     },
     {
-      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\site.js",
-      "PackagePath": "staticwebassets\\js\\site.js"
+      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\index.js",
+      "PackagePath": "staticwebassets\\js\\index.js"
     },
     {
-      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\login.html",
-      "PackagePath": "staticwebassets\\login.html"
+      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\user.js",
+      "PackagePath": "staticwebassets\\js\\user.js"
+    },
+    {
+      "Id": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\user.html",
+      "PackagePath": "staticwebassets\\user.html"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.api+html.Microsoft.AspNetCore.StaticWebAssets.props",
