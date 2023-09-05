@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authorization;
 using System.IdentityModel.Tokens.Jwt;
 using updateApi.Models;
-
+using updateApi.Services;
 
 namespace updateApi.controllers
 {
@@ -21,60 +21,45 @@ namespace updateApi.controllers
         {
             this.TaskServices = Task;
         }
-    
-    // [HttpGet]
-    // [Route("[action]")]
-    // public IEnumerable<Assiment> Get()
-    // {
-    //   return this.TaskServices.GetAll();
-    // }
-
+    /////get the Id-Mail of the user from the Token
+     
     [HttpGet()]
     [Route("[action]")]
     [Authorize(Policy = "User")]
     public ActionResult<List<Assiment>> Get()
     {
-        string tokenStr=Request.Headers.Authorization;
-        string newToken=tokenStr.Split(' ')[1];
-        var token = new JwtSecurityToken(jwtEncodedString: newToken);
-        string id = token.Claims.First(c => c.Type == "Id").Value;
-        List<Assiment> t = this.TaskServices.Get(int.Parse(id));
+        string mail =TokenService.GetMailFromToken(Request.Headers.Authorization);
+        List<Assiment> t = this.TaskServices.Get(mail);
         if (t == null)
             return NotFound();
             return t;
     }
     
     [HttpPost]
+    [Authorize(Policy = "User")]
         public ActionResult Post(Assiment assiment)
         {
-        string tokenStr=Request.Headers.Authorization;
-        string newToken=tokenStr.Split(' ')[1];
-        var token = new JwtSecurityToken(jwtEncodedString: newToken);
-        string id = token.Claims.First(c => c.Type == "Id").Value;
-        assiment.Id=int.Parse(id);
+        string mail =TokenService.GetMailFromToken(Request.Headers.Authorization);
+        assiment.Mail=mail;
             this.TaskServices.Add(assiment);
 
-            return CreatedAtAction(nameof(Post), new { id = assiment.Id }, assiment);
+            return CreatedAtAction(nameof(Post), new { id = assiment.Mail }, assiment);
         }
-     [HttpPut("{id}")]
+     [HttpPut("{idTask}")]
+    [Authorize(Policy = "User")]
         public ActionResult Put(int idTask, Assiment assiment)
         {
-        string tokenStr=Request.Headers.Authorization;
-        string newToken=tokenStr.Split(' ')[1];
-        var token = new JwtSecurityToken(jwtEncodedString: newToken);
-        string id = token.Claims.First(c => c.Type == "Id").Value;
-            if (! this.TaskServices.Update(int.Parse(id),idTask,assiment))
+        string mail =TokenService.GetMailFromToken(Request.Headers.Authorization);
+            if (! this.TaskServices.Update(mail,idTask,assiment))
                 return BadRequest();
             return NoContent();
         }
-        [HttpDelete]
+        [HttpDelete("{idTask}")]
+        [Authorize(Policy = "User")]
         public ActionResult Delete (int idTask)
         {
-        string tokenStr=Request.Headers.Authorization;
-        string newToken=tokenStr.Split(' ')[1];
-        var token = new JwtSecurityToken(jwtEncodedString: newToken);
-        string id = token.Claims.First(c => c.Type == "Id").Value;
-            if (! this.TaskServices.Delete(int.Parse(id),idTask))
+        string mail = TokenService.GetMailFromToken(Request.Headers.Authorization);
+            if (! this.TaskServices.Delete(mail,idTask))
                 return NotFound();
             return NoContent();            
         }

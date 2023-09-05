@@ -33,19 +33,21 @@ namespace updateApi.Services
         }
         
         public  List<Assiment> GetAll() => Tasks;
-        public List<Assiment> Get(int id)
+        public List<Assiment> Get(string mail)
         {
-            List<Assiment> assiment=Tasks.FindAll(p => p.Id == id);
+            List<Assiment> assiment=Tasks.FindAll(p =>p.Mail.Equals(mail, StringComparison.OrdinalIgnoreCase));
             return assiment;
         }
 
-        public bool Update(int id,int idTask, Assiment newTask)
+        public bool Update(string mail,int idTask, Assiment newTask)
         {
-            List<Assiment> assiment=Tasks.FindAll(p => p.Id == id);
-            if (newTask.Id != id)
-                return false;
+            
+            List<Assiment> assiment=Tasks.FindAll(p => p.Mail.Equals(mail, StringComparison.OrdinalIgnoreCase));
+            // if (newTask.Id != id)
+            //     return false;
             
             var task = assiment.FirstOrDefault(t => t.IdTask == idTask);
+
             task.Name = newTask.Name;
             task.Description = newTask.Description;
             task.Done=newTask.Done;
@@ -55,9 +57,10 @@ namespace updateApi.Services
             
         }
 
-        public  bool Delete(int id,int idTask)
+        public  bool Delete(string mail,int idTask)
         {
-             List<Assiment> assiment=Tasks.FindAll(p => p.Id == id);
+            
+             List<Assiment> assiment=Tasks.FindAll(p => p.Mail.Equals(mail, StringComparison.OrdinalIgnoreCase));
             var task = assiment.FirstOrDefault(t => t.IdTask == idTask);
             if (task == null)
                 return false;

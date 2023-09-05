@@ -12,8 +12,10 @@ namespace updateApi.Services
 {
     public static class TokenService
     {
+
         private static SymmetricSecurityKey key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("SXkSqsKyNUyvGbnHs7ke2NCq8zQzNLW7mPmHbnZZ"));
         private static string issuer = "https://fbi-demo.com";
+     
         public static SecurityToken GetToken(List<Claim> claims) =>
             new JwtSecurityToken(
                 issuer,
@@ -34,5 +36,15 @@ namespace updateApi.Services
 
         public static string WriteToken(SecurityToken token) =>
             new JwtSecurityTokenHandler().WriteToken(token);
+          public static string GetMailFromToken(string HeaderToken)
+    {
+        string tokenStr=HeaderToken;
+        string newToken=tokenStr.Split(' ')[1];
+        var token = new JwtSecurityToken(jwtEncodedString: newToken);
+        string mail = token.Claims.First(c => c.Type == "id").Value;
+        return mail;
     }
+
+    }
+    
 }

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using updateApi.Services;
+using updateApi.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,18 +56,28 @@ builder.Services.AddAuthorization(cfg =>
                     
                 });
 var app = builder.Build();
-
+app.UseLogMiddleware();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "FBI v1"));
 }
+
 app.UseHttpsRedirection();
-//app.UseDefaultFiles();
-
+app.UseDefaultFiles();
 app.UseStaticFiles();
+//  app.UseCustomHeaderMiddleware();
+//  app.UseRouting();
 
+// app.Map("api", app =>
+// {
+//     // Other middleware registrations
+
+//     app.UseMiddleware<CustomHeaderMiddleware>();
+
+//     // Other middleware registrations
+// });
 
 app.UseAuthentication();
 

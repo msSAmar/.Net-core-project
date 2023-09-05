@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="admin.js"></script>
     <title>admin</title>
 </head>
 
@@ -14,7 +13,6 @@
     <form action="javascript:void(0);" method="POST" onsubmit="addItem()">
         <input type="text" id="add-name" placeholder="שם משתמש">
         <input type="password" id="add-password" placeholder="סיסמה">
-        <input type="checkbox" id="add-isAdmin" placeholder="מנהל?">
         <input type="submit" value="Add">
     </form>
     <p id="counter"></p>
@@ -22,15 +20,16 @@
         <tr>
             <th>Name</th>
             <th>password</th>
-            <th>IsAdmin</th>
             <th>Delete</th>
         </tr>
         <tbody id="users"></tbody>
     </table>
     <br/>
     <br/>
+    
+    <script src="js/administratur.js" asp-append-version="true"></script>
     <script type="text/javascript">
-      
+        addUsers();
     </script>
 </body>
 </html>

@@ -9,12 +9,12 @@ namespace updateApi
         
 
     public List<Assiment> GetAll() ;
-    public List<Assiment> Get(int id);
+    public List<Assiment> Get(string id);
        
 
-    public bool Update(int id,int idTask, Assiment newTask);
+    public bool Update(string id,int idTask, Assiment newTask);
 
-    public bool Delete(int id,int idTask );
+    public bool Delete(string id,int idTask );
    
     public void Add(Assiment assiment);
        

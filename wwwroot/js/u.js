@@ -1,9 +1,10 @@
-const uri = '/Task';
+const uriTask = '/Task';
 let tasks = [];
+const token= sessionStorage.getItem('token');
 
 function getItems() {
-   
-    fetch(uri)
+    alert(token);
+    fetch(uriTask+'/Get',{method:'GET', headers:{'Authorization': `Bearer ${token}`}})
         .then(response => response.json())
         .then(data => _displayItems(data))
         .catch(error => console.error('Unable to get items.', error));
@@ -11,19 +12,27 @@ function getItems() {
 
 function addItem() {
     const addNameTextbox = document.getElementById('add-name');
+    const addMailTextbox = document.getElementById('add-name');
+  
 
     const item = {
-        name:"dvsfhbefh",
-        Deadline:"1/2/22"
-,        done:false,
-        description: addNameTextbox.value.trim()
+        
+            mail:"" ,
+            idTask:0,
+            name: addNameTextbox.value,
+            description: addNameTextbox.value,
+            done: false,
+            deadline: "string"
+          
+       
     };
 
-    fetch(uri, {
+    fetch(uriTask, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
             body: JSON.stringify(item)
         })
@@ -35,9 +44,15 @@ function addItem() {
         .catch(error => console.error('Unable to add item.', error));
 }
 
+  
 function deleteItem(id) {
-    fetch(`${uri}/${id}`, {
-            method: 'DELETE'
+    console.log(id);
+    fetch(`${uriTask}/${id}`, {
+            method: 'DELETE', headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
+            },
         })
         .then(() => getItems())
         .catch(error => console.error('Unable to delete item.', error));
@@ -46,28 +61,33 @@ function deleteItem(id) {
 function displayEditForm(id) {
     const item = tasks.find(item => item.id === id);
 
-    document.getElementById('edit-name').value = item.description;
-    document.getElementById('edit-id').value = item.id;
-    document.getElementById('edit-isDone').checked = item.done;
+    document.getElementById('edit-name').value = item.name;
+    document.getElementById('edit-id').value = item.idTask;
+    document.getElementById('edit-isDone').checked = item.isDone;
     document.getElementById('editForm').style.display = 'block';
 }
 
 function updateItem() {
-    const itemId = document.getElementById('edit-id').value;
+    let itemId = document.getElementById('edit-id').value;
+    itemId=parseInt(itemId, 10);
     const item = {
-        Id: parseInt(itemId, 10),
-        Name:"new item",
-        Deadline:"1/2/22",
-        Done: document.getElementById('edit-isDone').checked,
-        Description: document.getElementById('edit-name').value.trim()
+        mail: "0",
+        idTask: 0,
+        name: document.getElementById('edit-name').value.trim(),
+        description:document.getElementById('edit-name').value.trim(),
+        done:  true,
+        deadline: "string"
+    
     };
-     console.log(item)
-    fetch(`${uri}/${itemId}`, {
+
+    fetch(`${uriTask}/${itemId}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`
             },
+            
             body: JSON.stringify(item)
         })
         .then(() => getItems())
@@ -83,41 +103,40 @@ function closeInput() {
 }
 
 function _displayCount(itemCount) {
-    const name = (itemCount === 1) ? 'pizza' : 'pizza kinds';
+    const name = (itemCount === 1) ? 'task' : 'tasks kinds';
 
     document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
 
 function _displayItems(data) {
-    const tBody = document.getElementById('Assiment');
+    const tBody = document.getElementById('tasks');
     tBody.innerHTML = '';
-      console.log(data)
-   // _displayCount(data.length);
+
+    _displayCount(data.length);
 
     const button = document.createElement('button');
 
     data.forEach(item => {
-        let isGlutenFreeCheckbox = document.createElement('input');
-        isGlutenFreeCheckbox.type = 'checkbox';
-        isGlutenFreeCheckbox.disabled = true;
-        isGlutenFreeCheckbox.checked = item.done;
-
+        let isDoneCheckbox = document.createElement('input');
+        isDoneCheckbox.type = 'checkbox';
+        isDoneCheckbox.disabled = true;
+        isDoneCheckbox.checked = item.done;
+        
         let editButton = button.cloneNode(false);
         editButton.innerText = 'Edit';
         editButton.setAttribute('onclick', `displayEditForm(${item.id})`);
 
         let deleteButton = button.cloneNode(false);
         deleteButton.innerText = 'Delete';
-        deleteButton.setAttribute('onclick', `deleteItem(${item.id})`);
+        deleteButton.setAttribute('onclick', `deleteItem(${item.idTask})`);
 
         let tr = tBody.insertRow();
 
         let td1 = tr.insertCell(0);
-        td1.appendChild(isGlutenFreeCheckbox);
+        td1.appendChild(isDoneCheckbox);
 
         let td2 = tr.insertCell(1);
-        console.log(item)
-        let textNode = document.createTextNode(item.description);
+        let textNode = document.createTextNode(item.name);
         td2.appendChild(textNode);
 
         let td3 = tr.insertCell(2);
@@ -125,6 +144,12 @@ function _displayItems(data) {
 
         let td4 = tr.insertCell(3);
         td4.appendChild(deleteButton);
+        let idItem = document.createTextNode(item.idTask);
+        
+        let td5 = tr.insertCell(4);
+        
+        td5.appendChild(idItem);
+
     });
 
     tasks = data;

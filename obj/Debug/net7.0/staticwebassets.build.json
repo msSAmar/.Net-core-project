@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "otlfXB9DnleaV5e0GsyqbARiHd+dpabiT/8rj1dtpek=",
+  "Hash": "7ahCcCnEAh1BqsyKUCH92jwuRVpt6CPhEN+7TXNb09Y=",
   "Source": "api+html",
   "BasePath": "_content/api+html",
   "Mode": "Default",
@@ -68,12 +68,12 @@
       "OriginalItemSpec": "wwwroot\\index.html"
     },
     {
-      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\admin.js",
+      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\administratur.js",
       "SourceId": "api+html",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\",
       "BasePath": "_content/api+html",
-      "RelativePath": "js/admin.js",
+      "RelativePath": "js/administratur.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\admin.js"
+      "OriginalItemSpec": "wwwroot\\js\\administratur.js"
     },
     {
-      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\index.js",
+      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\u.js",
       "SourceId": "api+html",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\",
       "BasePath": "_content/api+html",
-      "RelativePath": "js/index.js",
+      "RelativePath": "js/u.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,15 +99,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\index.js"
+      "OriginalItemSpec": "wwwroot\\js\\u.js"
     },
     {
-      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\user.js",
+      "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\js\\Userlogin.js",
       "SourceId": "api+html",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\",
       "BasePath": "_content/api+html",
-      "RelativePath": "js/user.js",
+      "RelativePath": "js/Userlogin.js",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -116,7 +116,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\js\\user.js"
+      "OriginalItemSpec": "wwwroot\\js\\Userlogin.js"
     },
     {
       "Identity": "C:\\Users\\Dell Vostro\\Desktop\\api+html\\wwwroot\\user.html",

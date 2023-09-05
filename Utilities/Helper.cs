@@ -24,6 +24,7 @@ public static class Helper
     {
         services.AddSingleton<IOTaskServices, TaskServices>();
         services.AddSingleton<IOUserService, UserService>();
+        services.AddSingleton<IOLogServices, LogService>();
         
     }
 }
